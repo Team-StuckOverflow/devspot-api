@@ -13,6 +13,18 @@ curl "${API}${URL_PATH}" \
       "password": "'"${PASSWORD}"'",
       "password_confirmation": "'"${PASSWORD}"'"
     },
+    "userInfo": {
+      "lastName": "'"${LASTNAME}"'",
+      "city": "'"${CITY}"'",
+      "state": "'"${STATE}"'",
+      "country": "'"${COUNTRY}"'",
+      "languages": "'"${LANGUAGES}"'",
+      "yearsOfExp": "'"${YEARS}"'",
+      "role": "'"${ROLE}"'",
+      "gitHub": "'"${GIT}"'",
+      "linkedIn": "'"${LINKEDIN}"'",
+      "proPic": "'"${IMAGE}"'"
+    }
   }'
 
 echo
