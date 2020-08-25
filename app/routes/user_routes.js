@@ -12,6 +12,9 @@ const bcryptSaltRounds = 10
 // pull in error types and the logic to handle them and set status codes
 const errors = require('../../lib/custom_errors')
 
+// we'll use this function to send 404 when non-existant document is requested
+const handle404 = errors.handle404
+
 const BadParamsError = errors.BadParamsError
 const BadCredentialsError = errors.BadCredentialsError
 
@@ -45,7 +48,19 @@ router.post('/sign-up', (req, res, next) => {
       // return necessary params to create a user
       return {
         email: req.body.credentials.email,
-        hashedPassword: hash
+        hashedPassword: hash,
+        username: req.body.credentials.username,
+        firstName: req.body.userInfo.firstName,
+        lastName: req.body.userInfo.lastName,
+        city: req.body.userInfo.city,
+        state: req.body.userInfo.state,
+        country: req.body.userInfo.country,
+        languages: req.body.userInfo.langauges,
+        yearsofExp: req.body.userInfo.yearsOfExp,
+        role: req.body.userInfo.role,
+        gitHub: req.body.userInfo.gitHub,
+        linkedIn: req.body.userInfo.linkedIn,
+        proPic: req.body.userInfo.proPic
       }
     })
     // create user with provided email and hashed password
@@ -126,6 +141,47 @@ router.patch('/change-password', requireToken, (req, res, next) => {
     // respond with no content and status 200
     .then(() => res.sendStatus(204))
     // pass any errors along to the error handler
+    .catch(next)
+})
+
+// CHANGE userinfo
+// PATCH /user-info
+router.patch('/user-info', requireToken, (req, res, next) => {
+  // `req.user` will be determined by decoding the token payload
+  User.findById(req.user.id)
+    .then(user => {
+      return user.updateOne(req.body.userInfo)
+    })
+    // respond with no content and status 204
+    .then(() => res.sendStatus(204))
+    // pass any errors along to the error handler
+    .catch(next)
+})
+
+// INDEX all users
+// GET /users
+router.get('/users', (req, res, next) => {
+  User.find()
+    .then(users => {
+      // `users` will be an array of Mongoose documents
+      // we want to convert each one to a POJO, so we use `.map` to
+      // apply `.toObject` to each one
+      return users.map(user => user.toObject())
+    })
+    // respond with status 200 and JSON of the gyms
+    .then(users => res.status(200).json({ users: users }))
+    // if an error occurs, pass it to the handler
+    .catch(next)
+})
+
+// GET/SHOW one user
+// GET /users
+router.get('/users/:id', (req, res, next) => {
+  User.findById(req.params.id)
+    .then(handle404)
+    // if `findById` is succesful, respond with 200 and "example" JSON
+    .then(user => res.status(200).json({ user: user.toObject() }))
+    // if an error occurs, pass it to the handler
     .catch(next)
 })
 
