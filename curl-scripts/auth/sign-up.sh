@@ -14,6 +14,7 @@ curl "${API}${URL_PATH}" \
       "password_confirmation": "'"${PASSWORD}"'"
     },
     "userInfo": {
+      "firstName": "'"${FIRSTNAME}"'",
       "lastName": "'"${LASTNAME}"'",
       "city": "'"${CITY}"'",
       "state": "'"${STATE}"'",
