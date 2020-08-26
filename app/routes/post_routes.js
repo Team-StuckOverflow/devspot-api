@@ -30,7 +30,7 @@ const router = express.Router()
 // INDEX
 // GET /posts
 router.get('/posts', requireToken, (req, res, next) => {
-  Post.find()
+  Post.find().populate('owner')
     .then(posts => {
       // `examples` will be an array of Mongoose documents
       // we want to convert each one to a POJO, so we use `.map` to
@@ -47,7 +47,7 @@ router.get('/posts', requireToken, (req, res, next) => {
 // GET /posts/id
 router.get('/posts/:id', requireToken, (req, res, next) => {
   // req.params.id will be set based on the `:id` in the route
-  Post.findById(req.params.id)
+  Post.findById(req.params.id).populate('owner')
     .then(handle404)
     // if `findById` is succesful, respond with 200 and "example" JSON
     .then(post => res.status(200).json({ post: post.toObject() }))
@@ -79,7 +79,7 @@ router.patch('/posts/:id', requireToken, removeBlanks, (req, res, next) => {
   // owner, prevent that by deleting that key/value pair
   delete req.body.post.owner
 
-  Post.findById(req.params.id)
+  Post.findById(req.params.id).populate('owner')
     .then(handle404)
     .then(post => {
       // pass the `req` object and the Mongoose record to `requireOwnership`
@@ -98,7 +98,7 @@ router.patch('/posts/:id', requireToken, removeBlanks, (req, res, next) => {
 // DESTROY
 // DELETE /examples/5a7db6c74d55bc51bdf39793
 router.delete('/posts/:id', requireToken, (req, res, next) => {
-  Post.findById(req.params.id)
+  Post.findById(req.params.id).populate('owner')
     .then(handle404)
     .then(post => {
       // throw an error if current user doesn't own `example`
