@@ -1,19 +1,14 @@
 #!/bin/bash
 
 API="http://localhost:4741"
-URL_PATH="/sign-up"
+URL_PATH="/user-info"
 
 curl "${API}${URL_PATH}" \
   --include \
-  --request POST \
+  --request PATCH \
   --header "Content-Type: application/json" \
+  --header "Authorization: Bearer ${TOKEN}" \
   --data '{
-    "credentials": {
-      "email": "'"${EMAIL}"'",
-      "username": "'"${USERNAME}"'",
-      "password": "'"${PASSWORD}"'",
-      "password_confirmation": "'"${PASSWORD}"'"
-    },
     "userInfo": {
       "firstName": "'"${FIRSTNAME}"'",
       "lastName": "'"${LASTNAME}"'",
