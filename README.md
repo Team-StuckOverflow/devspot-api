@@ -1,6 +1,6 @@
 # DevSpot API
 
-The API for DevSpot is written by a small team of four developers using Express, MongoDB, and Mongoose. There are two main resources in the backend: users and posts. Both of these resources are modelled using Mongoose and stored as collections of documents in a non-relational database (MongoDB). Supported user features include sign in, sign up, sign out, change password and update profile (routes can be found below). Token authentication is incorporated into the app with the help of crypto (to generate the tokens) and Passport (authentication middleware used with Express). The team wrote routes for creating, reading, updating and deleting (CRUD) `Posts` with Express.
+The API for DevSpot is written by a small team of four developers using Express, MongoDB, and Mongoose. There are two main resources in the backend: `Users` and `Posts`. Both of these resources are modelled using Mongoose and stored as collections of documents in a non-relational database (MongoDB). Supported user features include sign in, sign up, sign out, change password and update profile (routes can be found below). Token authentication is incorporated into the app with the help of crypto (to generate the tokens) and Passport (authentication middleware used with Express). The team wrote routes for creating, reading, updating and deleting (CRUD) `Posts` with Express.
 
 ## Team StuckOverflow - Team Members
 
@@ -12,7 +12,7 @@ The API for DevSpot is written by a small team of four developers using Express,
 ## Important Links
 
 - [Deployed API](https://devspot-api.herokuapp.com/)
-- [DevSpot App](https://github.com/Team-StuckOverflow/project-3-api)
+- [DevSpot App](https://team-stuckoverflow.github.io/devspot-client/)
 - [DevSpot Client GitHub Repo](https://github.com/Team-StuckOverflow/project-3-client)
 
 ## Planning Story
