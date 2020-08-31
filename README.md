@@ -4,10 +4,10 @@ The API for DevSpot is written by a small team of four developers using Express,
 
 ## Team StuckOverflow - Team Members
 
-- [Azam Zariff]
-- [Chris Heibel]
-- [Perry Huang]
-- [Rain Robinson]
+- [Azam Zariff](https://github.com/zar686)
+- [Chris Heibel](https://github.com/lss555)
+- [Perry Huang](https://github.com/perryfhuang)
+- [Rain Robinson](https://github.com/rainswerld)
 
 ## Important Links
 
