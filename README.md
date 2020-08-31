@@ -21,6 +21,8 @@ The vision for DevSpot is to be the Twitter for software developers, where they 
 
 ## API End Points
 
+### Users
+
 | Verb   | URI Pattern        | Controller#Action       |  Token Required |
 |:-------|:-------------------|:------------------------|-----------------|
 | POST   | `/sign-up`         | `users#sign-up`         |   `false`       |     
@@ -30,6 +32,12 @@ The vision for DevSpot is to be the Twitter for software developers, where they 
 | GET    | `/users`           | `users#index`           |   `true`        |
 | GET    | `/users/:id`       | `users#show`            |   `true`        |
 | DELETE | `/sign-out`        | `users#sign-out`        |   `true`        |
+
+
+### Posts
+
+| Verb   | URI Pattern        | Controller#Action       |  Token Required |
+|:-------|:-------------------|:------------------------|-----------------|
 | GET    | `/posts`           | `posts#index`           |   `true`        |
 | POST   | `/posts`           | `posts#create`          |   `true`        |
 | PATCH  | `/posts/:id`       | `posts#update`          |   `true`        |
